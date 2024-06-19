@@ -9,7 +9,10 @@
 
     Time Complexity: Logarithmic
     Time Complexity Notation: O(log N)
-    ----------------------------------
+
+    Space Complexity: Logarithmic
+    Space Complexity Notation: O(log N)
+    -----------------------------------
 '''
 def recursive_binary_search(list, target, start=0):
     if len(list) == 0:

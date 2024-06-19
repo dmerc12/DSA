@@ -1,11 +1,16 @@
 '''
     Linear Search Algorithm
     --------------------------------------------------------------------
-    List does not have to be sorted
-    
+    List does not have to be sorted for algorithm to work
+
     Returns the index position of the target if found, else returns None
 
-    complexity: O(N)
+    Time Complexity: Linear
+    Time Complexity Notation: O(N)
+
+    Space Complexity: Constant
+    Space Complexity Notation: O(1)
+    -------------------------------
 '''
 def linear_search(list, target):
     print('Target: ', target)
@@ -14,6 +19,11 @@ def linear_search(list, target):
             return index
     else:
         return None
+
+'''
+    Unit Tests
+    ----------
+'''
 
 def verify(index):
     if index is not None:
@@ -25,17 +35,25 @@ numbers = [1,2,3,4,5,6,7,8,9,10]
 print('List: ', numbers)
 
 # Test if number is not in the list
-result = linear_search(numbers, 12)
+target = 12
+print('Target: ', target)
+result = linear_search(numbers, target)
 verify(result)
 
 # Test if number is in the middle of the list
-result = linear_search(numbers, 6)
+target = 6
+print('Target: ', target)
+result = linear_search(numbers, target)
 verify(result)
 
 # Test if number is in the front of the list
-result = linear_search(numbers, 1)
+target = 1
+print('Target: ', target)
+result = linear_search(numbers, target)
 verify(result)
 
 # Test if number is in the back of the list
-result = linear_search(numbers, 10)
+target = 10
+print('Target: ', target)
+result = linear_search(numbers, target)
 verify(result)
