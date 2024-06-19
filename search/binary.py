@@ -1,7 +1,10 @@
 '''
     Binary Search Algorithm
     --------------------------------------------------------------------
+    List must be sorted for algorithm to work
+
     Returns the index position of the target if found, else returns None
+    
     complexity: O(log N)
 '''
 def binary_search(list, target):

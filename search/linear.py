@@ -1,7 +1,10 @@
 '''
     Linear Search Algorithm
     --------------------------------------------------------------------
+    List does not have to be sorted
+    
     Returns the index position of the target if found, else returns None
+
     complexity: O(N)
 '''
 def linear_search(list, target):
