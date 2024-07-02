@@ -55,3 +55,49 @@ Understanding Big O notation helps in evaluating and choosing appropriate algori
 #### Ignoring Constants and Lower-Order Terms:
 Big O notation simplifies the analysis by focusing on the dominant term and ignoring the constants and lower-order terms.
 For example, an algorithm with a complexity of 5N<sup>2</sup> + 3N + 10 is considered O(N<sup>2</sup>) because, as N grows, the N<sup>2</sup> term will dominate the growth rate.
+
+### Recurrance Relations:
+A recurrance relation is a function that is defined in terms of the same function operating on a value < N, such as the function T(N) = O(1) + T(N / 2).
+Using O-notation to express runtime complexity of a recursive function requires solving the recurrance relation.
+
+#### Recursion Tree:
+A recursion tree is a useful tool for solving recurrances. It is a visuall diagram of an operation done by a recursive function that separates operations done directly by the function and operations done by recursive calls.
+
+### Fast Sorting Algorithms:
+A fast sorting algorithm is a sorting algorithm that has an average runtime complexity of O(N log N) or better.
+
+#### Sorting Algorithms' Average Runtime Complexity:
+|Sorting Algorithm|Average case runtime complexity|Fast?|
+|-----------------|-------------------------------|-----|
+|Selection sort   |O(N<sup>2</sup>)               |No   |
+|Insertion sort   |O(N<sup>2</sup>)               |No   |
+|Shell sort       |O(N<sup>1.5</sup>)             |No   |
+|Quicksort        |O(N log N)                     |Yes  |
+|Merge sort       |O(N log N)                     |Yes  |
+|Heap sort        |O(N log N)                     |Yes  |
+|Radix sort       |O(N)                           |Yes  |
+
+#### Element Comparison Sorting Algorithm:
+A element comparison sorting algorithm is a sorting algorithm that operates on an array of elements that can be compared to each other.
+
+##### Identifying Comparison Sorting Algorithms:
+|Sorting algorithm|Comparison?|
+|-----------------|-----------|
+|Selection sort   |Yes        |
+|Insertion sort   |Yes        |
+|Shell sort       |Yes        |
+|Quicksort        |Yes        |
+|Merge sort       |Yes        |
+|Heap sort        |Yes        |
+|Radix sort       |No         |
+
+#### Fast Sorting Algorithm's Best, Average, and Worst Case Runtime Complexity:
+|Sorting algorithm|Best cases runtime complexity|Average case runtime complexity|Worst case runtime complexity|
+|-----------------|-----------------------------|-------------------------------|-----------------------------|
+|Quicksort        |O(N log N)                   |O(N log N)                     |O(N<sup>2</sup>)             |
+|Merge sort       |O(N log N)                   |O(N log N)                     |O(N log N)                   |
+|Heap sort        |O(N)                         |O(N log N)                     |O(N log N)                   |
+|Radix sort       |O(N)                         |O(N)                           |O(N)                         |
+
+### Selection Sort:
+Selection sort is a sorting algorithm that treats the input as two parts, sorted and unsorted, and repeatedly selects the proper next value to move from the unsorted part to the end of the sorted part.
