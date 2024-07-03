@@ -143,4 +143,22 @@ In the case the array size is not evenly divisible by the gap value, some interl
 - A common option is to choose powers of 2 minus 1, in descending order.
 - Using gap values that are powers of 2 or in descending order is not required. Shell sort will correctly sort arrays using any positive integer gapp values in any order, provided a gapp value of 1 is included.
 
-Typical runtime complexity of O(N<sup>3/2</sup>).
+Typical runtime complexity of O(N<sup>3/2</sup>) or O(N<sup>1.5</sup>).
+
+### Quicksort
+Quicksort is a sorting algorithm that repeatedly partitions the input into low and high parts (each unsorted), and then recursively sorts each of those parts.To partition the input, quicksort chooses a pivot to divide the data into low and high parts.
+All values in the low partition are less than or equal to the pivot value.
+All values in the high partition are greater than or equal to the pivot value.
+Values equal to the pivot may appear on either or both of the partitions.
+The pivot can be any value within the array, commonly the value of the middle array element.
+
+- The partitioning algorithm uses two index variables, l and h (low and high), initialized to the left and right sides of the current sorted elements.
+- As long as the value at index l is lesss than the pivot value, the algorithm increments l, because the element should remain in the low partition.
+- As long as the value at index h is greater than the pivot value, the algorithm decrements h, becaause the element should remain in the high partition.
+- Then, if l >= h, all elements have been partitioned, and the partitioning algorithm returns h, which is the index of the last element in the low partition.
+- Otherwise, the elements at indicies l and h are swapped to move those elements to the correct partions.
+- The algorithm then increments l, decrements h, and repeats.
+- Typically implemented as a recursive algorithm using calls to quicksort the low and high partitions.
+- This recursive sorting process continuess until a partition has one or zero elements, and thus is already sorted.
+
+Typical runtime complexity of O(N log N) if equal partioning occurs, otherwise runtime complexity will be O(N<sup>2</sup>), which rarely occurs.
