@@ -123,3 +123,24 @@ Insertion sort is a sorting algorithm that treats the input as two parts, sorted
 Typical runtime complexity of O(N<sup>2</sup>).
 
 For sorted or nearly sorted inputs the runtime complexity is O(N).
+
+### Shell Sort:
+Shell sort is a sorting algorithm that treats the input as a collection of interleaved lists, and sorts each list individually with a variant of the insertion sort algorithm, using gap values to determine the number of interleaved lists.
+
+A gap value is a positive integer representing the distance between elements in an interleaved list.
+For each interleaved list, if an element is at index i, the next element is at index i + gap value
+
+- Begins by choosing a gap value K and sorting K interleaved lists in place.
+- Finishes by performing a standard insertion sort on the entire array.
+- Since the interleaved parts have been sorted, smaller elements will be close to the array's beginning and larger elements towards the end.
+- Insertion sort can then quickly sort the nearly sorted array.
+
+In the case the array size is not evenly divisible by the gap value, some interleaved lists will have fewer items than others.
+
+- Begins by picking an arbitrary collection of gap values. For each gap value K, K calls are made to the insertion sort variant function to sort K interleaved lists.
+- Ends with a final gap value of 1, to finish with the regular insertion sort
+- Tends to perform well when choosing gap values in descending order.
+- A common option is to choose powers of 2 minus 1, in descending order.
+- Using gap values that are powers of 2 or in descending order is not required. Shell sort will correctly sort arrays using any positive integer gapp values in any order, provided a gapp value of 1 is included.
+
+Typical runtime complexity of O(N<sup>3/2</sup>).

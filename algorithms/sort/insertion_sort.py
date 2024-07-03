@@ -1,8 +1,6 @@
 '''
     Insertion Sort Algorithm
     --------------------------------------------------------------------
-    List does not have to be sorted for algorithm to work
-
     Sorts a list input as 2 parts, sorted and unsorted, and inserts the next value from the unsorted part into the correct location in the sorted part
 
     The index variable i denotes the starting position of the current element in the unsorted part

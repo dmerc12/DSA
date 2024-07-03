@@ -1,8 +1,6 @@
 '''
     Selection Sort Algorithm
     --------------------------------------------------------------------
-    List does not have to be sorted for algorithm to work
-
     Sorts a list input as 2 parts, sorted and unsorted, and repeatedly selects the proper next value from unsorted part
 
     The index variable i denotes the dividing point. Elements to the left of i are sorted, and elements including and to the right of i are unsorted
