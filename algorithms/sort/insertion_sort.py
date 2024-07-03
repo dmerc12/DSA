@@ -12,7 +12,7 @@
     Time Complexity Notation: O(N^2)
 
     Space Complexity: Constant
-    Space Complexity Notation: O(N)
+    Space Complexity Notation: O(1)
     -------------------------------
 '''
 

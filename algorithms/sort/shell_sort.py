@@ -11,7 +11,7 @@
     Time Complexity Notation: O(N^1.5)
 
     Space Complexity: Constant
-    Space Complexity Notation: O(N)
+    Space Complexity Notation: O(1)
     -------------------------------
 '''
 

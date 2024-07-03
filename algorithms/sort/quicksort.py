@@ -7,7 +7,7 @@
     Time Complexity Notation: O(N log N) or O(N^2)
 
     Space Complexity: Constant
-    Space Complexity Notation: O(N)
+    Space Complexity Notation: O(1)
     -------------------------------
 '''
 

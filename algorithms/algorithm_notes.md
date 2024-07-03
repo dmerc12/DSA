@@ -56,17 +56,17 @@ Understanding Big O notation helps in evaluating and choosing appropriate algori
 Big O notation simplifies the analysis by focusing on the dominant term and ignoring the constants and lower-order terms.
 For example, an algorithm with a complexity of 5N<sup>2</sup> + 3N + 10 is considered O(N<sup>2</sup>) because, as N grows, the N<sup>2</sup> term will dominate the growth rate.
 
-### Recurrance Relations:
+## Recurrance Relations:
 A recurrance relation is a function that is defined in terms of the same function operating on a value < N, such as the function T(N) = O(1) + T(N / 2).
 Using O-notation to express runtime complexity of a recursive function requires solving the recurrance relation.
 
-#### Recursion Tree:
+### Recursion Tree:
 A recursion tree is a useful tool for solving recurrances. It is a visuall diagram of an operation done by a recursive function that separates operations done directly by the function and operations done by recursive calls.
 
-### Fast Sorting Algorithms:
+## Fast Sorting Algorithms:
 A fast sorting algorithm is a sorting algorithm that has an average runtime complexity of O(N log N) or better.
 
-#### Sorting Algorithms' Average Runtime Complexity:
+### Sorting Algorithms' Average Runtime Complexity:
 |Sorting Algorithm|Average case runtime complexity|Fast?|
 |-----------------|-------------------------------|-----|
 |Selection sort   |O(N<sup>2</sup>)               |No   |
@@ -77,10 +77,10 @@ A fast sorting algorithm is a sorting algorithm that has an average runtime comp
 |Heap sort        |O(N log N)                     |Yes  |
 |Radix sort       |O(N)                           |Yes  |
 
-#### Element Comparison Sorting Algorithm:
+### Element Comparison Sorting Algorithm:
 A element comparison sorting algorithm is a sorting algorithm that operates on an array of elements that can be compared to each other.
 
-##### Identifying Comparison Sorting Algorithms:
+#### Identifying Comparison Sorting Algorithms:
 |Sorting algorithm|Comparison?|
 |-----------------|-----------|
 |Selection sort   |Yes        |
@@ -91,7 +91,7 @@ A element comparison sorting algorithm is a sorting algorithm that operates on a
 |Heap sort        |Yes        |
 |Radix sort       |No         |
 
-#### Fast Sorting Algorithm's Best, Average, and Worst Case Runtime Complexity:
+### Fast Sorting Algorithm's Best, Average, and Worst Case Runtime Complexity:
 |Sorting algorithm|Best cases runtime complexity|Average case runtime complexity|Worst case runtime complexity|
 |-----------------|-----------------------------|-------------------------------|-----------------------------|
 |Quicksort        |O(N log N)                   |O(N log N)                     |O(N<sup>2</sup>)             |
@@ -99,7 +99,7 @@ A element comparison sorting algorithm is a sorting algorithm that operates on a
 |Heap sort        |O(N)                         |O(N log N)                     |O(N log N)                   |
 |Radix sort       |O(N)                         |O(N)                           |O(N)                         |
 
-### Selection Sort Algorithm:
+## Selection Sort Algorithm:
 Selection sort is a sorting algorithm that treats the input as two parts, sorted and unsorted, and repeatedly selects the proper next value to move from the unsorted part to the end of the sorted part.
 
 1. The index variable i denotes the dividing point. Elements to the left of i are sorted, and elements including and to the right of i are unsorted.
@@ -112,7 +112,7 @@ The term "selection" comes from the fact that for each iteration of the outer lo
 
 Typical runtime complexity of O(N<sup>2</sup>).
 
-### Insertion Sort Algorithm:
+## Insertion Sort Algorithm:
 Insertion sort is a sorting algorithm that treats the input as two parts, sorted and unsorted, and repeatedly inserts the next value from the unsorted part into the correct location in the sorted part.
 
 1. The index variable i denotes the starting position of the current element in the unsorted part.
@@ -124,7 +124,7 @@ Typical runtime complexity of O(N<sup>2</sup>).
 
 For sorted or nearly sorted inputs the runtime complexity is O(N).
 
-### Shell Sort:
+## Shell Sort:
 Shell sort is a sorting algorithm that treats the input as a collection of interleaved lists, and sorts each list individually with a variant of the insertion sort algorithm, using gap values to determine the number of interleaved lists.
 
 A gap value is a positive integer representing the distance between elements in an interleaved list.
@@ -145,7 +145,7 @@ In the case the array size is not evenly divisible by the gap value, some interl
 
 Typical runtime complexity of O(N<sup>3/2</sup>) or O(N<sup>1.5</sup>).
 
-### Quicksort
+## Quicksort
 Quicksort is a sorting algorithm that repeatedly partitions the input into low and high parts (each unsorted), and then recursively sorts each of those parts.To partition the input, quicksort chooses a pivot to divide the data into low and high parts.
 All values in the low partition are less than or equal to the pivot value.
 All values in the high partition are greater than or equal to the pivot value.
@@ -162,3 +162,18 @@ The pivot can be any value within the array, commonly the value of the middle ar
 - This recursive sorting process continuess until a partition has one or zero elements, and thus is already sorted.
 
 Typical runtime complexity of O(N log N) if equal partioning occurs, otherwise runtime complexity will be O(N<sup>2</sup>), which rarely occurs.
+
+## Merge Sort:
+Merge sort is a sorting algorithm that divides a list into two halves, recursively sorts each half, and then merges the sorted halves to produce a sorted list. The recursive partitioning continues until a list of one element is reached, as a list of one element is already sorted.
+
+The merge sort algorithm uses three index variables to keep track of the elements to  sort for each recursive call:
+- The index variable i is the index of the first element in the list.
+- The index variable k is the index of the last element.
+- The index variable j is used to divide the list into two halves.
+- Elements from i to j are in the left half, and elements from j + 1 to k are in the right half.
+
+Merge sort merges the two sorted partitions into a single list by repeatedly selecting the smallest element from either the left or right partition and adding that element to a temporary merged list.
+Once fully merged, the elements in the temporary merged list are copied back to the original list.
+
+Typical runtime complexity of O(N log N).
+Typical space complexity of O(N).
