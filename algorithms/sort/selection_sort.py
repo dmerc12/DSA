@@ -13,24 +13,24 @@
 
     The term "selection" comes from the fact that for each iteration of the outer loop, a value is selected for position i
 
-    Time Complexity: Linear
+    Time Complexity: Quadradic
     Time Complexity Notation: O(N^2)
 
     Space Complexity: Constant
     Space Complexity Notation: O(N)
     -------------------------------
 '''
-def selection_sort(numbers):
-    for i in range(len(numbers) - 1):
+def selection_sort(list):
+    for i in range(len(list) - 1):
         # Find index of smallest remaining element
         index_smallest = i
-        for j in range(i + 1, len(numbers)):
-            if numbers[j] < numbers[index_smallest]:
+        for j in range(i + 1, len(list)):
+            if list[j] < list[index_smallest]:
                 index_smallest = j
-        # Swap numbers[i] and numbers[index_smallest]
-        temp = numbers[i]
-        numbers[i] = numbers[index_smallest]
-        numbers[index_smallest] = temp
+        # Swap list[i] and list[index_smallest]
+        temp = list[i]
+        list[i] = list[index_smallest]
+        list[index_smallest] = temp
 
 '''
     Unit Tests

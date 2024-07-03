@@ -99,5 +99,27 @@ A element comparison sorting algorithm is a sorting algorithm that operates on a
 |Heap sort        |O(N)                         |O(N log N)                     |O(N log N)                   |
 |Radix sort       |O(N)                         |O(N)                           |O(N)                         |
 
-### Selection Sort:
+### Selection Sort Algorithm:
 Selection sort is a sorting algorithm that treats the input as two parts, sorted and unsorted, and repeatedly selects the proper next value to move from the unsorted part to the end of the sorted part.
+
+1. The index variable i denotes the dividing point. Elements to the left of i are sorted, and elements including and to the right of i are unsorted.
+2. All elements in the unsorted part are searched to find the index of the next element with the smallest value.
+3. The variable index_smallest stores the index of the smallest element in the unsorted part.
+4. Once the element with the smallest value is found, the element is swapped with the element at locattion i.
+5. Then, the index i is advanced one place to the right, and the process repeats.
+
+The term "selection" comes from the fact that for each iteration of the outer loop, a value is selected for position i.
+
+Typical runtime complexity of O(N<sup>2</sup>).
+
+### Insertion Sort Algorithm:
+Insertion sort is a sorting algorithm that treats the input as two parts, sorted and unsorted, and repeatedly inserts the next value from the unsorted part into the correct location in the sorted part.
+
+1. The index variable i denotes the starting position of the current element in the unsorted part.
+2. Initially, the first element is assumed to be sorted, so the outer loop initializes to 1.
+3. The inner while loop inserts the current element into the sorted part by repeatedly swapping the current element with the elements in the sorted part.
+4. Once a smaller or equal element is found in the sorted part, the current element has been inserted in the correct location and the while loop terminates.
+
+Typical runtime complexity of O(N<sup>2</sup>).
+
+For sorted or nearly sorted inputs the runtime complexity is O(N).
