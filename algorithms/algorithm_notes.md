@@ -177,3 +177,22 @@ Once fully merged, the elements in the temporary merged list are copied back to 
 
 Typical runtime complexity of O(N log N).
 Typical space complexity of O(N).
+
+## Radix Sort:
+Radix sort is a sorting algorithm designed specifically for integers.
+The algorithm makes use of a concept called buckets and is a type of bucket sort.
+
+A bucket is a collection of integer values that all share a particular digit value.
+
+Radix sort is a sorting algorithm specifically for an array of integers:
+- The algorithm processes one digit at a time starting with the least significant digit and ending with the most significant.
+- Two steps are needed for each digit:
+    1. First, all array elements are placed into buckets based on the current digit's value.
+    2. Then, the array is rebuilt by removing all elements from buckets, in order from lowest bucket to highest.
+
+## Bubble Sort:
+Bubble sort is a sorting algorithm that iterates through a list, comparing and swapping adjacent elements if the second element is less than the first.
+
+Uses nested loops resulting in a runtime complexity of O(N<sup>2</sup>).
+
+Often considered impractical for real-world use since many faster sorting algorithms exist.
