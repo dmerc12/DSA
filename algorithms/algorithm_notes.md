@@ -163,6 +163,19 @@ The pivot can be any value within the array, commonly the value of the middle ar
 
 Typical runtime complexity of O(N log N) if equal partioning occurs, otherwise runtime complexity will be O(N<sup>2</sup>), which rarely occurs.
 
+## Quickselect:
+Quickselect is an algorithm that selects the k<sup>th</sup> smallest element in a list.
+
+For a list with N elements, quickselect uses quicksort's partition function to partition the list into a low partition containing the X smallest elementss and a high partition containing N - X largest elements.
+The k<sup>th</sup> smallest element in the low partition f k is less than or qual to the last index in the low partioin, and in the high partion otherwise.
+Quickselect is recursively called on the partition that contains the  k<sup>th</sup> element.
+When a partition size 1 is encountered, quickselect has found the k<sup>th</sup> smallest element.
+
+Quickselect partially sorts the list when selecting the k<sup>th</sup> smallest element.
+
+The best and average case runtime complexity of quickselect are both O(N).
+In worst case, quickselect may sort the entire list, resulting in a runtime of O(N<sup>2</sup>)
+
 ## Merge Sort:
 Merge sort is a sorting algorithm that divides a list into two halves, recursively sorts each half, and then merges the sorted halves to produce a sorted list. The recursive partitioning continues until a list of one element is reached, as a list of one element is already sorted.
 
@@ -178,6 +191,25 @@ Once fully merged, the elements in the temporary merged list are copied back to 
 Typical runtime complexity of O(N log N).
 Typical space complexity of O(N).
 
+## Bubble Sort:
+Bubble sort is a sorting algorithm that iterates through a list, comparing and swapping adjacent elements if the second element is less than the first.
+
+Uses nested loops resulting in a runtime complexity of O(N<sup>2</sup>).
+
+Often considered impractical for real-world use since many faster sorting algorithms exist.
+
+## Bucket Sort:
+Bucket sort is a numerical sorting algorithm that distributes numbers into buckets, sorts each bucket with an additional sorting algorithm, and then concatenates buckets together to build the sorted result.
+
+A bucket is a container for numerical values in a specific range.
+
+1. The algorithm creates a list of buckets, each representing a range of numerical values.
+Collectively, the buckets represent the range from 0 to the max value in the array.
+For N buckets and a max value of M, each bucket represents x values: $$ x = \frac{M + 1}{N} $$
+The bucket index is calculated as: $$ [number * \frac{N}{M + 1}] $$
+2. Then, each bucket is sorted with an additional sorting algorithm.
+3. Lastly, all buckets are concatenated together in order and copied to the original array.
+
 ## Radix Sort:
 Radix sort is a sorting algorithm designed specifically for integers.
 The algorithm makes use of a concept called buckets and is a type of bucket sort.
@@ -189,10 +221,3 @@ Radix sort is a sorting algorithm specifically for an array of integers:
 - Two steps are needed for each digit:
     1. First, all array elements are placed into buckets based on the current digit's value.
     2. Then, the array is rebuilt by removing all elements from buckets, in order from lowest bucket to highest.
-
-## Bubble Sort:
-Bubble sort is a sorting algorithm that iterates through a list, comparing and swapping adjacent elements if the second element is less than the first.
-
-Uses nested loops resulting in a runtime complexity of O(N<sup>2</sup>).
-
-Often considered impractical for real-world use since many faster sorting algorithms exist.
