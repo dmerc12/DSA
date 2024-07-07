@@ -9,6 +9,15 @@ A process or set of rules to be followed in calculations or other problem-solvin
 - The steps in the algorithm should produce a result.
 - The algorithm should complete in a finite amount of time.
 
+## NP-Complete Problems:
+NP-complete problems are a set of problems for which no known efficient algorithm exists and have the following characteristics:
+
+- No efficient algorithm has been found to solve an NP-complete problem.
+- No one has proven that an efficient algorithm to solve an NP-complete problem is impossible.
+- If an efficient algorithm exists for one NP-complete problem, then all NP complete problems can be solved efficiently.
+
+By knowing a problem is NP-complete, instead of trying to find an efficient algorithm to solve the problem, a programmer can focus on finding an algorithm to efficiently find a good, but non-optimal solution.
+
 ## Complexity:
 Algorithm complexity is the combination of a multitude of factors, mainly space and time complexity, both of which can be written using big O notation.
 When written this way the algorithm can be simplified for comparison against other algorithms.
@@ -221,3 +230,56 @@ Radix sort is a sorting algorithm specifically for an array of integers:
 - Two steps are needed for each digit:
     1. First, all array elements are placed into buckets based on the current digit's value.
     2. Then, the array is rebuilt by removing all elements from buckets, in order from lowest bucket to highest.
+
+
+## Huffman compression:
+Given data represented as some quantity of bits, compression transforms the data to use fewer bits.
+Compressed data uses less storage and can be communicated faster than uncompressed data.
+
+The basic idea of compression is to encode frequently-occuring items using fewer bits.
+
+Prior to compression, a character frequency table must be built for an input string.
+Such a table contains each distinct character from the input string and each character's number of occurances.
+Programming languages commonly provide a dictionary or map object to store the character frequency table.
+
+Huffman coding is a common compression technique that assigns fewer bits to frequent items, using a binary tree.
+
+Note: For Huffman encoded data, the dictionary must be included along with the compressed data, to enable decompression.
+
+### Building a Huffman Tree:
+The data members in a Huffman tree node depend on the node type:
+- Leaf nodes have two data members: a character from the input and an integer frequency for that character.
+- Internal nodes have left and right child nodes, along with an integer frequency value that represents the sum of the left and right child frequencies.
+
+A Huffman tree can be built from a charactter frequency table.
+Each character corresponds to a leaf node.
+The Huffman code for a character is built by tracing a path from the root to that character'ss leaf node, appending 0 when branching left or 1 when right.
+
+### Compressing Data:
+To compress an input string, the Huffman codes are first obtained for each character.
+Then each character of the input string is processed and corresponding bit codes are concatenated to produce the compressed result.
+
+### Decompressing Huffman Coded Data:
+To decompress Huffman code data, one can use a Huffman tree and trace the branches for each bit, starting at the root.
+When the final node of the branch is reached, the result has been found.
+The processs continues until the entire item is decompressed.
+
+## Heuristics:
+In practice, solving a problem in the optimal or most accurate way may require more computational resources than are available or feasible.
+Algorithms implemented for such problems often use a heuristic.
+A heuristic is a technique that willingly accepts a non-optimal or less accurate solution in order to improve execution speed.
+
+A heuristic algorithm is an algorithm that quickly determines a near optimal or approximate solution.
+
+A self-adjusting heuristic is an algorithm that modifies a data structure based on how that data structure is used.
+
+### Greedy Algorithm:
+A greedy algorithm solves a problem by assuming that the optimal choice at a given moment during the algorithm will also be the optimal choice overall.
+Greedy algorithms tend to be efficient, but certain types of problems exist where greedy algorithms don't find the best or optimal solution.
+However, greedy algorithms produce both effcient and optimal solutions for many problems.
+
+## Dynamic Programming:
+Dynamic programming is a problem solving technique that:
+1. Splits a problem into smaller subproblems.
+2. Computes and stores solutions to subproblems in memory.
+3. Uses the stored solutions to solve the larger problem.
