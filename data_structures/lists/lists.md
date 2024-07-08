@@ -31,4 +31,41 @@ A linked list can also be implemented without using a list data structure, which
 |GetLength(list)        |Returns the number of items in the list. |GetLength(list) returns 2                                        |
 
 ## Singly-Linked Lists:
+A singly-linked list is a data structure for implementing a list ADT, where each node has data and a pointer to the next node.
+The list structure typically has pointers to the list's first and last node.
+A singly-linked list's first node is called the head, and the last node the tail.
+A singly Linked list is a type of positional list, where elements contain pointers to the next and / or previous elements in the list.
 
+### Appending a Node to a Singly-Linked List:
+Given a new node, the append operation for a singly-linked list inserts the new node after the list's tail node.
+The append algorithm behavior differs if the list is empty versus not empty:
+- Append to empty list: If the list's head pointer is null (empty), the algorithm points the list's head and tail pointers to the new node.
+- Append to non-empty list: If the list's head pointer is not null (not empty), the algorithm points the tail node's next pointer and the list's tail pointer to the new node.
+
+### Prepending a Node to a Singly-Linked List:
+Given a new node, the prepend operation for a singly-linked list inserts the new node before the list's head node.
+The prepend algorithm behavior differs if the list is empty versus not empty:
+- Append to empty list: If the list's head pointer is null (empty), the algorithm points the list's head and tail pointers to the new node.
+- Append to non-empty list: If the list's head pointer is not null (not empty), the algorithm points the new node's next pointer to the head node, and then points the list's head pointer to the new node.
+
+### Inserting a Node into a Singly-Linked List:
+Given a new node, the InsertAfter operation for a singly-linked list inserts the new node after a provided existing list node.
+curNode is a pointer to an existing list node, but can be null when inserting into an empty list.
+The InsertAfter algorithm considers three insertion scenarios:
+- Insert as list's first node: If the list's head pointer is null, the algorithm points the list'ss head and tail pointers to the new node.
+- Insert after list's tail node: If the list's head pointer is not null (list not empty) and curNode points to the list's tail node, the algorithm points the tail node's next pointer and the list's tail pointer to the new node.
+- Insert in middle of list: If the list's head pointer is not null (list not empty) and curNode does not point to the list's tail node, the algorithm points the new node's next pointer to curNode's next node, and then points curNode's next pointer to the new node.
+
+### Removing a Node in a Singly-Linked List:
+Given a specified existing node in a singly-linked list, the RemoveAfter operation removes the node after the specified list node.
+The existing node is specified with the curNode parameter.
+If curNode is null, RemoveAfter removes the list's first node.
+Otherwise, the algorithm removes the node after curNode.
+
+- Remove list's head node (special case): Iff curNode is null, the algorithm points sucNode to the head node's next node, and points the list's head pointer to sucNode. If sucNode is null, the only list node was removed, so the list's tail pointer is pointed to null (indicating the list is now empty).
+- Remove node after curNode: If curNode's next pointer is nottt null (a node after curNode exists), the algorithm points sucNode to the node after curNode's next node. Then curNode's next pointer is pointed to sucNode. If sucNode is null, the list's tail node was removed, so the algorithm points the list's tail pointer to curNode (the new tail node).
+
+### Searching for a Node in a Singly-Linked List:
+Given a key, a search algorithm returns the first node whose data matches that key, or returns null if a matching node was not found.
+A simple linked list search algorithm checks the current node (initially the list's head node), returning that node if a match, else pointing the current node to the next node and repeating.
+If the pointer to the current node is null, the algorithm returns null (matching node was not found).
