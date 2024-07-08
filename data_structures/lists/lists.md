@@ -110,3 +110,11 @@ The algorithm uses four separate checks to update each pointer:
 
 When removing a node in the middle of the list, both the predecessor and successor nodes exist, and the algorithm updates the predecesssor and successor nodes' pointers to achieve the ordering {predNode sucNode}.
 When removing the only node in a list, curNode points to both the list's head and tail nodes, and sucNode and predNode are both null.
+
+## Circular Lists:
+A circular linked list is a linked list where the tail node's next pointer points to the head of the list instead of null.
+A circular linked list can be used to represent repeating processes.
+
+The head of a circular linked list is often referred to as the start node.
+
+A traversal through a circular linked list is similar to traversal through a standard linked list, but must terminate after reaching the head node a second time, as opposed to terminating when reaching null.
