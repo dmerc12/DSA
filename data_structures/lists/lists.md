@@ -118,3 +118,118 @@ A circular linked list can be used to represent repeating processes.
 The head of a circular linked list is often referred to as the start node.
 
 A traversal through a circular linked list is similar to traversal through a standard linked list, but must terminate after reaching the head node a second time, as opposed to terminating when reaching null.
+
+## Linked List Traversal:
+A list traversal algorithm visits all nodes in the list once and performs an operation on each node.
+The algorithm starts by pointing a curNode pointer to the list's head node.
+While curNode is not null, the algorithm performs an operation then points curNode to the next node.
+After the list's tail node is visited, curNode is pointed to the tail node's next node, which is null, so traversal ends.
+The traversal algorithm supports both singly-linked and doubly-linked lists.
+
+A doubly-linked list also supports reverse traversal.
+Reverse traversal visits all nodes starting with the list's tail node and ending after visiting the list's head node.
+
+## Sorting Linked Lists:
+### Insertion Sort for Doubly-Linked Lists:
+Insertion sort for a doubly-linked list operates similarly to thye insertion sort algorithm used for arrays.
+Starting with the second list element, each element in the linked list is visited.
+Each visited element is moved back as needed and inserted into the correct position in the list's sorted portion.
+The list must be a doubly-linked list, since reverse traversal is not possible with a singly-linked list.
+
+### Insertion Sort for Singly-Linked Lists:
+Insertion sort can sort a singly-linked list by changing how each visited element is inserted into the sorted portion of tthe list.
+The insertion sort algorithm can find the insertion position by traversing the list from the list head toward the current element.
+The FindInsertionPosition algorithm searches the list for the insertion position and returns the list node after which the current node should be inserted.
+If the current node should be inserted at the head, FindInsertionPosition returns null.
+
+### Sorting Linked-Lists vs. Arrays:
+Sorting algorithms for arrays (quicksort and heapsort) require constant-time access to arbitrary, indexed locations to operate efficiently.
+Linked lists do not allow indexed access, making for difficult adaptation of such sorting algorithms to operate on linked lists.
+The talbes below provide a brief overview of the challenges in adappting array sorting algorithms for linked lists.
+
+#### Sorting Algorithms Easily Adapted to Efficiently Sort Linked Lists:
+|Sorting algorithm|Adaption to linked lists|
+|-----------------|------------------------|
+|Insertion sort   |Operates similarly on doubly-linked lists. Requires searching from the head of the list for an element's insertion possition for singly-linked lists.|
+|Merge sort       |Finding the middle of the list requires searching linearly from the head of the list. The merge algorithm can also merge lists without additional storage.|
+
+#### Sorting Algorithms Difficult to Adapt to Efficently Sort Linked Lists:
+|Sorting algorithm|Challenge|
+|-----------------|---------|
+|Shell sort       |Jumping the gap between elements cannot be done on a linked list, as each element between two elements must be traversed.|
+|Quicksort        |Partitioning requires reverse traversal through the right portion of the array, which is not supported with singly-linked lists.|
+|Heap sort        |Indexed access is required to find child nodes in constant time when percolating down.|
+
+## Linked List Dummy Nodes:
+A linked list implementation may use a dummy node (or header node).
+A header node is a node with an unused data member that always resides at the head of the list and cannot be removed.
+Using a dummy node simplifiess the algorithms for a linked list becausse the head and tail pointers are never null.
+An empty list consists of the dummy node, which has the next pointer set to null and the list's head and tail pointers both point to the dummy node.
+
+### Singly-Linked List Implementation:
+When a singly-linked list with a dummy node is created, the dummy node is allocated and the list's head and tail pointers are set to point to the dummy node.
+List operations are simpler to implement compared to a linked list without a dummy node, since a special case is removed from each implementation.
+
+### Doubly-Linked List Implementation:
+A dummy node can also be used in a doubly-linked list implementation.
+The dummy node in a doubly-linked list always has the prev pointer set to null.
+
+A doubly-linked list implementation can also use two dummy nodes: one at the head and the other at the tail.
+Doing so removes additional conditionals and further simplifies the implementation of most methods.
+
+## Recursion in Linked Lists:
+### Forward Traversal:
+Forward traversal through a linked list can be implemented using a recursive function that takes a node as an argument.
+If non-null, the node is visited first.
+Then, a recursive call is made on the node's next pointer, to traverse the remainder of the list.
+The ListTraverse function takes a list as an argument, and searches the entire list by calling ListTraverseRecursive on the list's head.
+
+### Searching:
+A recursive linked list search is implemented similar to forward traversal.
+Each call examines one node.
+If the node is null, then null is returned.
+Otherwise, the node's data is compared to the search key.
+If a match occurs, the node is returned, otherwise the remainder of the list iss searched recursively.
+
+### Reverse Traversal:
+Forward traversal visits a node first, then recursively traverses the remainder of the list.
+If the order is swapped, such that the recursive call is made first, the list is traversed in reverse order.
+
+## Array-Based Lists:
+An array-based list is a list ADT implemented using an array.
+An array-based list supports the common list ADT operations.
+
+In many programming languages, arrays have a fixed size.
+An array-based list implementation will dynamically allocate the array as needed as the number of elements changes.
+Initially, the array-based list implementation allocates a fixed size array and uses a length variable to keep track of how many array elements are in use.
+The list starts with a default allocation size, greater than or equal to one. A default size of one to ten is common.
+
+Given a new element, the append opperation for an array-based list of length X inserts the new element at the end of the list, or at index X.
+
+### Resize Operation:
+An array-based list must be resized if an item is added when the allocation size equals the list length.
+A new array is allocated with a length greater than the existing array.
+Allocating the new array with twice the current length is a common approach.
+The existing array elements are then copied to the new array, which becomes the list's storage array.
+
+Because all existing elements must be copied from one array to another, the resize operation has a runtime complexity of O(N).
+
+### Prepend and Insert After Operations:
+The Prepend operation for an array-based list inserts a new item at the start of the list.
+- First, if the allocation size equals the list length, the array is resized.
+- Then, all existing array elements are moved up by one position, and the new item is inserted at the list start or index zero.
+- Because all existing array elements must be moved up by one, the Prepend operation has a runtime complexity of O(N).
+
+The InsertAfter operation for an array-based list inserts a new item after a specified index.
+- First, if the allocation size equals the list length, the array is resized.
+- Next, all elements in the array residing after the specified index are moved up by one position.
+- Then, the new item is inserted at index (specified index + 1) in the list's array.
+- The InsertAfter operation has a best case runtime complexity of O(1) and a worst case runtime complexity of O(N).
+
+### Search and Removal Opertions:
+Given a key, the search operation returns the index for the first element whose data matches that key, or -1 if not found.
+
+Given the index of an item in an array-based list, the remove-at operation removed the item at that index.
+When removing an item at index X, each item after index X is moved down by one position.
+
+Both the search and remove operations have a worst case runtime complexity of O(N).

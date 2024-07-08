@@ -64,3 +64,20 @@ class DoublyLinkedList:
 
         if current_node is self.tail:
             self.tail = predecessor_node
+
+    def insertion_sort(self):
+        current_node = self.head.next
+        while current_node != None:
+            next_node = current_node.next
+            search_node = current_node.prev
+            while ((search_node != None) and (search_node.data > current_node.data)):
+                search_node = search_node.prev
+            # Remove and re-insert curNode
+            self.remove(current_node)
+            if search_node == None:
+                current_node.prev = None
+                self.prepend(current_node)
+            else:
+                self.insert_after(search_node, current_node)
+            # Advance to next node
+            current_node = next_node
