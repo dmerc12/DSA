@@ -38,7 +38,7 @@ class SinglyLinkedList:
             new_node.next = current_node.next
             current_node.next = new_node
 
-    def remove_after(self, current_node):
+    def remove_after(self, current_node: Node | None):
         if (current_node is None) and (self.head is not None):
             succeeding_node = self.head.next
             self.head = succeeding_node
