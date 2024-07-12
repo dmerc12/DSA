@@ -78,11 +78,68 @@ First the algorithm locates X's successsor (the leftmost child of X's right subt
 Then, the algorithm recursively removes the successor from the right subtree.
 
 ### BST In Order Traversal:
+A tree traversal algorithm visits all nodes in the tree once and performs an operation on each node.
+An inorder traversal visits all nodes in a BST from smallest to largest.
+Starting from the root, the algorithm recursively traverses the left subtree, the current node, and the right tree.
 
 ### BST Height and Insertion Order:
+Recall that a tree's height is the maximum edges from the root to any leaf (a one-node tree has a height of 0).
+The minimum N-node binary tree height is <i>h = [log<sub>2</sub> N]</i>, achieved when each level is full except possibly the last.
+The maximum N-node binary tree height is <i>N - 1</i> (the - 1 is because the root is at height 0).
+
+Searching a BST is fast if the tree's height is near the minimum.
+Inserting items in random order naturally keeps a BST's height near the minimum.
+In contrast, inserting items in nearly-sorted order leads to a nearly-maximum tree height.
+
+Given a node representing a BST subtree, the height can be computed as follows:
+- If the node is null, return -1.
+- Otherwise recursively compute the left and right child subtree heights, and return 1 plus the greater of the 2 child subtrees' heights.
 
 ### BST Parent Node Pointers:
+A BST implementation often includes a parent pointer inside each node.
+A balanced BST, such as an AVL tree or red-black tree, may utilize the parent pointer to traverse up the tree from a particular node to find a node's parent, grandparent, or siblings.
 
 ### BST Recursion:
+### BSST Recursive Search Algorithm:
+BST search can be implemented using recursion.
+A single node and search key are passed as arguments to the recursive search function.
+Two base cases exist.
+1. When the node is null, in which cases null is returned.
+If the node is non-null, then the search key is compared to the node's key.
+2. When the search key equals the node's key, in which case the node is returned.
+If the search key is less than the node's key, a recursive call is made on the node's left child.
+If the search key is greater than the node's key, a recursive call is made on the node's right child.
+
+### BST Get Parent Algorithm:
+A recursive BST get-parent algorithm searches for a parent in a way similar to the normal BST search algorithm.
+Instead of comparing the search key with a candidate node's key, the search key is compared with the keys of the candidate node's children.
+
+### Recursive BST Insertion and Removal:
+BST insertion and removal can also be implemented using recursion.
+The insertion algorithm uses recursion to traverse down the tree until the insertion location is found.
+The removal algorithm uses the recursive search functions to find the node and the node's parent, then removes the node from the tree.
+If the node to remove is an internal node with two children, the node's successor is recursively removed.
 
 ## Tries:
+A trie (prefix tree) is a tree representing a set of strings.
+Each non-root node represents a single character.
+Each node has at most one child per distinct alphabet character.
+A terminal node is a node representing a terminating character, which is the end of a string in the trie.
+
+Tries provide efficient storage and quick search for strings, and are often used to implement auto-complete and predictive text input.
+
+### Trie Insert Algorithm:
+Given a string, a trie insert operation creates a path from the root to a terminal node that visits all the string's characters in sequence.
+A current node pointer initially points to the root.
+A loop then iterates through the string's characters.
+For each character:
+1. A new child node is added only if the current node does not have a child for the character.
+2. The current node pointer is assigned with the current node's child for the character.
+
+After all characters are pprocessed, a terminal node is added and returned.
+
+### Trie Search Algorithm:
+Given a string, a trie search operation returns the terminal node corresponding to that string, or null if the string is not in the trie.
+
+### Trie Remove Algorithm:
+Given a string, a trie remove operation removes the string's corresponding terminal node and all non-root ancestors with 0 children.
