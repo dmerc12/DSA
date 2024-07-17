@@ -1,14 +1,14 @@
-class BSTNode:
-    def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
-
 '''
     Binary Search Tree
     ------------------
 '''
 class BinarySearchTree:
+    class BSTNode:
+        def __init__(self, key):
+            self.key = key
+            self.left = None
+            self.right = None
+
     def __init__(self):
         self.root = None
 
@@ -101,82 +101,82 @@ class BinarySearchTree:
                 current_node = current_node.left
         return
 
-class AVLNode:
-    # Constructor with a key paramater creates the Node object.
-    def __init__(self, key):
-        self.key = key
-        self.parent: AVLNode | None = None
-        self.left: AVLNode | None = None
-        self.right: AVLNode | None = None
-        self.height = 0
-
-    # Calculate the current nodes' balance factor, defined as height (left subtree) - height (right subtree).
-    def get_balance(self):
-        # Get current height of left subtree, or -1 if None.
-        left_height = -1
-        if self.left is not None:
-            left_height = self.left.height
-        # Get current height of right subtree, or -1 if None.
-        right_height = -1
-        if self.right is not None:
-            right_height = self.right.height
-        # Calculate the balance factor.
-        return left_height - right_height
-
-    # Recalculate the current height of the subtree rooted at the node, usually called after a subtree has been modified.
-    def update_height(self):
-        # Get current height of left subtree, or -1 if None.
-        left_height = -1
-        if self.left is not None:
-            left_height = self.left.height
-        # Get current height of right subtree, or -1 if None.
-        right_height = -1
-        if self.right is not None:
-            right_height = self.right.height
-        # Assign self.height with calculated node.
-        self.height = max(left_height, right_height) + 1
-
-    # Assign either the left or right data member with a new child.
-    # The parameter which_child is expected to be the string "left" or the string "right".
-    # Returns True if the new child is successfully assigned to this node, False otherwise.
-    def set_child(self, which_child, child):
-        # Ensure which_child is properly assigned.
-        if which_child != 'left' and which_child != 'right':
-            return False
-        # Assign the left or right data member.
-        if which_child == 'left':
-            self.left = child
-        else:
-            self.right = child
-        # Assign the parent data member of the new child, if the child is not None.
-        if child is not None:
-            child.parent = self
-        # Update the node's height, since the subtree's structure may have changed.
-        self.update_height()
-        return True
-
-    # Replace a current child with a new child.
-    # Determines if the current child is on the left or right, and calls set_child() with the new node appropriately.
-    # Returns True if the new child is assigned, False otherwise.
-    def replace_child(self, current_child, new_child):
-        if self.left is current_child:
-            return self.set_child('left', new_child)
-        elif self.right is current_child:
-            return self.set_child('right', new_child)
-        # If neighter of the above casess applied, then the new child could not be attached to this node.
-        return False
-
 class AVLTree:
+    class AVLNode:
+        # Constructor with a key paramater creates the Node object.
+        def __init__(self, key):
+            self.key = key
+            self.parent: AVLTree.AVLNode | None = None
+            self.left: AVLTree.AVLNode | None = None
+            self.right: AVLTree.AVLNode | None = None
+            self.height = 0
+
+        # Calculate the current nodes' balance factor, defined as height (left subtree) - height (right subtree).
+        def get_balance(self):
+            # Get current height of left subtree, or -1 if None.
+            left_height = -1
+            if self.left is not None:
+                left_height = self.left.height
+            # Get current height of right subtree, or -1 if None.
+            right_height = -1
+            if self.right is not None:
+                right_height = self.right.height
+            # Calculate the balance factor.
+            return left_height - right_height
+
+        # Recalculate the current height of the subtree rooted at the node, usually called after a subtree has been modified.
+        def update_height(self):
+            # Get current height of left subtree, or -1 if None.
+            left_height = -1
+            if self.left is not None:
+                left_height = self.left.height
+            # Get current height of right subtree, or -1 if None.
+            right_height = -1
+            if self.right is not None:
+                right_height = self.right.height
+            # Assign self.height with calculated node.
+            self.height = max(left_height, right_height) + 1
+
+        # Assign either the left or right data member with a new child.
+        # The parameter which_child is expected to be the string "left" or the string "right".
+        # Returns True if the new child is successfully assigned to this node, False otherwise.
+        def set_child(self, which_child, child):
+            # Ensure which_child is properly assigned.
+            if which_child != 'left' and which_child != 'right':
+                return False
+            # Assign the left or right data member.
+            if which_child == 'left':
+                self.left = child
+            else:
+                self.right = child
+            # Assign the parent data member of the new child, if the child is not None.
+            if child is not None:
+                child.parent = self
+            # Update the node's height, since the subtree's structure may have changed.
+            self.update_height()
+            return True
+
+        # Replace a current child with a new child.
+        # Determines if the current child is on the left or right, and calls set_child() with the new node appropriately.
+        # Returns True if the new child is assigned, False otherwise.
+        def replace_child(self, current_child, new_child):
+            if self.left is current_child:
+                return self.set_child('left', new_child)
+            elif self.right is current_child:
+                return self.set_child('right', new_child)
+            # If neighter of the above casess applied, then the new child could not be attached to this node.
+            return False
+
     # Constructor to create an empty AVLTree.
     # There is only one data member, the tree's root Node, and it starts out as None.
     def __init__(self):
-        self.root: AVLNode | None = None
+        self.root: AVLTree.AVLNode | None = None
 
     # Performs a left rotation at the given node.
     # Returns the new root of the subtree.
     def rotate_left(self, node: AVLNode):
         # Define a convience pointer to the left child of the right child.
-        right_left_child: AVLNode = node.right.left
+        right_left_child: AVLTree.AVLNode = node.right.left
         # Step 1 - the right child moves up to the node's position.
         # This detaches node from the tree, but it will be reattached later.
         if node.parent is not None:
