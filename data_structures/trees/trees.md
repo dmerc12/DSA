@@ -209,3 +209,17 @@ Balance factor updates are only needed on nodes ascending along the path from th
 Each node's balance factor can be recomputed by determining left and right subtree heights, or for speed can be stored in each node and then incrementally uppdated : +1 if ascending from a left child, -1 if from a right child.
 If a balance factor update yields 2 or -2, the imbalance case is determined via that node's left (for 2) or right (for -2) child's balance factor, and the appropriate rotations performed.
 
+Insertion starts with the standart BST insertion algorithm.
+After inserting a node, all ancestors of the inserted node, from the parent up to the root are rebalanced.
+A node is rebalanced by first computing the node's balance factor, then performing rotations if the balance factor is outside of the range [-1, 1].
+
+### AVL Removals:
+Given a key, an AVL tree remove operation removes the first-found matching node, restructuring the tree to preserve all AVL tree requirements.
+Removal begins by removing the node ussing the standard BST removal algorithm.
+After removing a node, all ancestors of the removed node, from the nodes' parent up to the root, are rebalanced.
+A node is rebalanced by first computing the node's balance factor, then performing rotations if the balance factor is 2 or -2.
+
+To remove a key, the AVL tree removal algorithm first locates the node containing the key using BSTSearch.
+If the node is found, AVLTreeRemoveNode is called to remove the node.
+Standard BST removal logic is used to remove the node from the tree.
+Then AVLTreeRebalance is called for all ancestors of the removed node, from the parent up to the root.
