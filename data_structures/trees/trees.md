@@ -223,3 +223,98 @@ To remove a key, the AVL tree removal algorithm first locates the node containin
 If the node is found, AVLTreeRemoveNode is called to remove the node.
 Standard BST removal logic is used to remove the node from the tree.
 Then AVLTreeRebalance is called for all ancestors of the removed node, from the parent up to the root.
+
+## Red-Black Tree - A Balanced Tree:
+A red-black tree is a BST with two node types, namely red and black, and supporting opperations that ensure the tree is balanced when a node is inserted or removed.
+The below red-black tree's requirements ensure that a tree with N nodes will have a height of O(log N).
+- Every node is colored either red or black.
+- The root node is black.
+- A red node's children cannot be red.
+- A null child is considered to be a black leaf node.
+- All paths from a node to any null leaf descendant node must have the same number of black nodes.
+
+### Rotations:
+A rotation is a local rearangment of a BST that maintains the BST ordering property while rebalancing the tree.
+Rotations are used during the insert and remove operations on a red-black tree to ensure that the red-black tree requirements hold.
+Rotating is said to be done "at" a node.
+A left rotation at a node causes the node's right child to take the node's place in the tree.
+A right rotation at a node causes the node's left child to take the node's place in the tree.
+
+A rotation requires altering up to three child subtree pointers.
+
+A left rotation at a node requires the node's right child to be non-null.
+Two utility funcitons are used for red-black tree rotations.
+The RBTreeSetChild utility function sets a node's left child, if the whichChild parameter is "left", or right child, if the whichChild parameter is "right", and updates the child's parentt pointer.
+The RBTreeReplaceChild utility funciton replaces a node's left or right child pointer with a new value
+
+The RBTreeRotateLeft function performs a left rotation at the specified node by updating the right child's left child to point to the node, and updating the node's right child to point to the right child's former left child.
+If non-null the node's parent has the child pointer changed from node to the node's right child.
+Otherwise, if the node's parent is null, then the tree's root pointer is updated to point to the node's right child.
+
+Right rotation is analgous to left rotation.
+A right rotation at a node requires the node's left child to be non-null.
+
+### Insertion:
+Given a new node, a red-black tree insert operation inserts the new node in the proper location such that all red-black tree requirements still hold after the insertion completes.
+Red-black tree insertion begins by calling BSTInsert to insert the node using the BST insertion rules.
+The newly inserted node is colored red and then a balance operation is performed on this node.
+The red-black balance operation consists of the steps below:
+1. Assign parent with node's parent, uncle with node's uncle, which is a sibling of parent, and grandparent with node's grandparent.
+2. If node is the tree's root, then color node black and return.
+3. If parent is black, then return without any alterations.
+4. If parent and uncle are both red, then color parent and uncle black, color grandparent red, recursively balance grandparent, then return.
+5. If node is parent's right child and parent is grandparent's left child, then rotate left at parent, assign node with parent, assign parent with node's parent, and continue at step 7.
+6. If node is parent's left child and parent is grandparent's right child, then rotate right at parent, assign node with parent, assign parent with node's parent, and continue at step 7.
+7. Color parent black and grandparent red.
+8. If node is parent's left child, then rotate right at grandparent, otherwise rotate left at grandparent.
+
+### Removal:
+Given a key, a red-black tree remove operation removes the first-found matching node, restructuring the tree to preserve all red-black tree requirements.
+First the node to remove is found using BSTSearch.
+If the node is found, RBTreeRemoveNode is called to remove the node.
+
+Given a key, a red-black tree remove-key operation removes the key from the tree, if present, restructuring as needed to preserve all red-black tree requirements.
+First, BSTSearch is called to find the node containing the key.
+If the node is found, RBTreeRemoveNode() is called to remove the node.
+RBTreeRemoveNode() consists of the following steps:
+1. If the node has two children, copy the key from the node's predecessor to a temporary value, recursively remove the predecessor from the tree, replace the node's key with the temporary value, and return.
+2. If the node is black, call RBTreePrepareForRemoval() to restructure the tree in preparation for the node's removal.
+3. Remove the node using the standard BST removal algorithm.
+
+Utility funcitons help simplify red-black tree removal code.
+The RBTreeGetSibling function returns the sibling of a node.
+The RBTreeIsNonNullAndRed function returns true only if a node is non-null and red, false otherwise.
+The RBTreeIsNullOrBlack function returns true if a node is null or black, false otherwise.
+The RBTreeAreBothChildrenBlack function returns true only if both of a node's children are black.
+Each utility function considers a null node to be a black node.
+
+Preparation for removing a black node requires altering the number of black nodes along paths to preserve the black-path-length property.
+The RBTreePreppareForRemoval algorithm uses six utility functions that analyze the tree and make appropriate alterations when each of the six cases is encountered.
+The utility functions return true if the case is encountered, and false otherwise.
+If case one, three, or four is encountered, RBTreePrepareForRemoval will return after calling the utility function.
+If case two, five, or six is encountered, additional cases must be checked.
+
+Preparation for removing a node first checks for each of the six cases, performing the operations below:
+1. If the node is red or the node's parent is null, then return.
+2. If the node has a red sibling, then color the parent red, and the sibling black.
+If the node is the parent's left child then rotate left at the parent, otherwise rotate right at the parent.
+Continue to the next step.
+3. If the node's parent is black and both children of the node's sibling are black, then color the sibling red, recursively call on the node's parent, then return.
+4. If the node's parent is red and both children of the node's sibling are black, then color the parent black, color the sibling red, then return.
+5. If the sibling's left child is red, the sibling's right child is black, and the node is the left child of the parent, then color the sibling red and the left child of the sibling black.
+Then rotate right at the sibling and continue to the next step.
+6. If the sibling's left child is black, the sibling's right child is red, and the node is the righ child of the parent, then color the sibling red and the right child of the sibling black.
+Then rotate left at the sibling and continue to the next step.
+7. Color the sibling the same color as the parent and color the parent black.
+8. If the node is the parent's left child, then color the sibling's right child black and rotate left at the parent.
+Otherwise color the sibling's left child black and rotate right at the parent.
+
+#### Prepare-For-Removal Algorithm Case Descriptions:
+|Case #|Condition|Action if condition true|Process additional cases after action?|
+|------|---------|------------------------|--------------------------------------|
+|1|Node is red or node's parent is null|None|No|
+|2|Sibling node is red|Color parent red and sibling black. If node is left child of parent, rotate left at parent node, otherwise rotate right at parent node|Yes|
+|3|Parent is black and both of sibling's children are black|Color sibling red and call removal preparation function on parent|No|
+|4|Parent is red and both of sibling's children are black|Color parent black and sibling red|No|
+|5|Sibling's left child is red, sibling's right child is black, and node is left child of parent|Color sibling red and sibling's left child black. Rotate right at sibling|Yes|
+|6|Sibling's left child is black, sibling's right child is red, and node is right child of parent|Color sibling red and sibling's right child black. Rotate left at sibling|Yes|
