@@ -67,3 +67,39 @@ The second loop removes the maximum value, stores that value at the end index, a
 |7                             |2                          |
 |...                           |...                        |
 |N                             |[N / 2] - 1                |
+
+## Priority Queue ADT:
+A priority queue is a queue where each item has a priority, and items with higher priority are closer to the front than items with lower priority.
+The priority enqueue operation inserts an item such that the item is closer to the front than all items of lower priority, and closer to the end than all items of equal or higher priority.
+The priority queue dequeue operation removes and returns the item at the front of the queue, which has the highest priority.
+
+In addition to enqueue and dequeue, a priority queue usually supports peeking and length querying.
+A peek operation returns the highest priority item, without removing the item from the front of the queue.
+
+A priority queue can be implemented such that each item's priority can be determined from the item itself.
+
+A priority queue may also be implemented such that all priorities are specified during a call to EnqueueWithPriority:
+An enqueue operation that includes an argument for the enqueued item's priority.
+
+A priority queue is commonly implemented using a heap.
+A heap will keep the highest priority item in the root node and allow access in O(1) time.
+Adding and removing items from the queue will operate in worst-case O(log N) time.
+
+## Treaps:
+A BST built from inserts of N nodes having random-ordered keys stays well-balanced and thus has near-minimum height, meaning searches, inserts, and deletes are O(log N).
+Because insertion order may not be controllable, a data structure that somehow randomizes BST insertions is desirable.
+A treap uses a main key that maintains a binary search tree ordering property, and a secondary key generated randomly (often called "priority") during insertions that maintains a heap property.
+The combination usually keeps the tree balanced.
+The word "treap" is a mix of tree and heap.
+Algorithms for baisc treap operations include:
+- A treap search is the same as a BST search using the main key, since the treap is a BST.
+- A treap insert initially inserts a node as in a BST using the main key, then assigns a random priority to the node, and percolates the node up until the heap property is not violated.
+In a heap, a node is moved up via a swap with the node's parent.
+In a treap, a node is moved up via a rotation at the parent.
+Unlike a swap, a rotation maintains the BST property.
+- A treap delete can be done by setting the node's priority such that the node should be a leaf (-&infin; for a max-heap), percolating the node down using rotations until the node is a leaf, and then removing the node.
+
+A treap delete could be done by first doing a BST delete (copying the successor to the node-to-delete, then deleting the original successor), followed by percolating the node down until the heap property is not violated.
+However, a simpler approach just sets the node-to-delete's priority to -&infin; (for a max-heap), percolates down until a leaf, and removes the node.
+Percolating the node down uses rotations, not swaps, to maintain the BST property.
+Also, the node is rotated in the direction of the lower-priority child, so that the node rotated up has a higher priority than that child, to keep the heap property.
