@@ -125,3 +125,84 @@ If the destination vertex's predecessor pointer is null, then a path from the st
 
 Dijkstra's shortest path algorithm can be used for unweighted graphs (using a uniform edge weight of 1) and weighted graphs with non-negative edges weights.
 For a directed graph with negative edge weights, Dijkstra's algorithm may not find the shortest path for some vertices, so the algorithm should not be used if a negative edge weight exists.
+
+## Bellman-Ford's Shortest Path:
+The Bellman-Ford shortest path algorithm, created by Richard Bellman and Lester Ford, Jr., determines the shortest path from a start vertex to each vertex in a graph.
+For each vertex, the Bellman-Ford algorithm determines the vertex's distance and predecessor pointer.
+A vertex's distance is the shortest path distance from the start vertex.
+A vertex's predecessor pointer pointes to the previous vertex along the shortest path from the start vertex.
+
+The Bellman-Ford algorithm initializes all vertices' current distances to infinity (&infin;) and predecessors to null, and assigns the start vertex with a distance of 0.
+The algorithm performs V-1 main iterations, visiting all vertices in the graph during each iteration.
+Each time a vertex is visited, the algorithm follows all edges to adjacent vertices.
+For each adjacent vertex, the algorithm computes the distance of the path from start vertex to the current vertex and continuing on to the adjacent vertex.
+If that path's distance is shorter than the adjacent vertex's current distance, a shorter path has been found.
+The adjacent vertex's current distance is updated to the newly found shorter path's distance, and the vertex's predecessor pointer is pointed to the current vertex.
+
+The Bellman-Ford algorithm does not require a specific order for visiting vertices during each main iteration.
+So after each iteration, a vertex's current distance and predecessor may not yet be the shortest tests path from the start vertex.
+The shortest path may propagate to only one vertex each iteration, requiring V-1 iterations to propagate from the start vertex to all other vertices.
+
+The Bellman-Ford algorithm supports graphs with negative edge weights.
+However, if a negative edge weight cycle exists, a shortest path does not exist.
+After visiting all vertices V-1 times, the algorithm checks for negative edge weight cycles.
+If a negative edge weight cycle does not exist, the algorithm returns true (shortest path exists), otherwise returns false.
+
+## Topological Sort:
+A topological sort of a directed, acyclic graph produces a list of the graph's vertices such that for every edge from vertex X to vertex Y, X comes before Y in the list.
+
+The topological sort algorithm uses three lists: a results list that will contain a topological sort of vertices, a no-incoming-edges list of vertices with no incoming edges, and a remaining-edges list.
+The result list starts with an empty list of vertices.
+The no-incoming-edges vertex list starts as a list of all vertices in the graph with no incoming edges.
+The remaining-edges list starts as a list of all edges in the graph.
+
+The algorithm executes while the no-incoming-edges vertex list is not empty.
+For each iteration, a vertex is removed from the no-incoming-edges list and added to the result list.
+Next, a temporary list is built by removing all edges in the remaining-edges list that are outgoing from the removed vertex.
+For each edge currentE in the temporary list, the number of edges in the remaining-edges list that are incoming to currentE's terminating vertex are counted.
+If the incoming edge count is 0, then currentE's terminating vertex is added to the no-incoming-edges vertex list.
+
+Because each loop iteration can remove any vertex from the no-incoming-edges list, the algorithm's output is not guaranteed to the graph's only possible topological sort.
+
+## Minimum Spanning Tree:
+A graph's minimum spanning tree is a subset of the graph's edges that connect all vertices in the graph together with the minimum sum of edge weights.
+The graph must be weighted and connected.
+A connected graph contains a path between every pair of vertices.
+
+Kruskal's minimum spanning tree algorithm determines subset of the graph's edges that connect all vertices in an undirected graph with the minimum sum of edge weights.
+Kruskal's minimum spanning tree algorithm uses three collections:
+- An edge list initialized with all edges in the graph.
+- A collection of vertex sets that represent the subsets of vertices connected by current set of edges in the minimum spanning tree.
+Initially, the vertex sets consists of one set for each vertex.
+- A set of edges forming the resulting minimum spanning tree.
+
+The algorithm executes while the collection of vertex sets has at least two sets and the edge list has at least one edge.
+In each iteration, the edge with the lowest weight is removed from the list of edges.
+If the removed edge connects two different vertex sets, then the edge is added to the resulting minimum spanning tree, and the two vertex sets are merged.
+
+## All Pairs Shortest Path:
+An all pairs shortest path algorithm determines the shortest path between all possible pairs of vertices in a graph.
+For a graph with vertices V, a |V| x |V| matrix represents the shortest path lengths between all vertex pairs in the graph.
+Each row corresponds to a start vertex, and each column in the matrix corresponds to a terminating vertex for each path.
+
+### Floyd-Warshall Algorithm:
+The Floyd-Warshall all-pairs shortest path algorithm generates a |V| x |V| matrix of values representing the shortest path lengths between all vertex pairs in a graph.
+Graphs with cycles and negative edge weights are supported, but the graph must not have any negative cycles.
+A negative cycle is a cycle with edge weights that sum to a negative value.
+Because a negative cycle could be traversed repeatedly, lowering the path length each time, determining a shortesst path between two vertices in a negative cycle is not possible.
+
+The Floyd-Warshall algorithm initializes the shortest path lengths matrix in three steps:
+1. Every entry is assigned with infinity.
+2. Each entry representing the path from a vertex to itself is assigned with 0.
+3. For each edge from X to Y in the graph, the matrix entry for the path from X to Y is initialized with edge's weight.
+
+The algorithm then iterates through every vertex in the graph.
+For each vertex X, the shortest path lengths for all vertex pairs are recomputed by considering vertex X as an intermediate vertex.
+For each matrix entry representing A to B, existing matrix entries are used to compute the length of the path from A through X to B.
+If this path length is less than the current shortest path length, then corresponding matrix entry is updated.
+
+### Path Reconstruction:
+Although only shortest path lengths are computed by the Floyd-Warshall algorithm, the matrix can be used to reconstruct the path sequence.
+Given the shortest path length from a start vertex to an end vertex is L.
+An edge from vertex X to the ending vertex exists such that the shortest path length from the starting vertex to X, plus the edge weight, equals L.
+Each such edge is found, and the path is reconstructed in reverse order.
